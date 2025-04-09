@@ -9,36 +9,36 @@ jobs:
   start : 
     runs-on: ubuntu-latest
     steps : 
-     -name : check-repo 
-     uses : actions/checkout@v3 
+     - name : check-repo 
+       uses : actions/checkout@v3 
 
   nodeVersion:  
    needs : start 
    runs-on : ubuntu-latest 
    steps : 
-    -name : check node version 
-    uses : actions/setup-node@v3,
-   with :
-    node-version : '20'
+    - name : check node version 
+      uses : actions/setup-node@v3
+      with :
+        node-version : '20'
 
 
   install-dependancy : 
    needs : nodeVersion
    runs-on : ubuntu-latest 
    steps : 
-    -name : install-dep 
-    run : npm install 
+    - name : install-dep 
+      run : npm install 
 
   Lint-App :  
    needs : install-dependancy 
    runs-on : ubuntu-latest 
    steps : 
-    -name : 'lint-app'
-    run : npm run lint 
+    - name : 'lint-app'
+      run : npm run lint 
 
   build-app : 
    needs : Lint-App 
    runs-on : ubuntu-latest
    steps :
-    -name : build app 
-    run : npm run build
+    - name : build app 
+      run : npm run build
