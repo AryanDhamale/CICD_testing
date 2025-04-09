@@ -29,7 +29,7 @@ jobs:
     -name : install-dep 
     run : npm install 
 
-  lint-app :  
+  Lint-App :  
   needs : install-dependancy 
   runs-on : ubuntu-latest 
   steps : 
@@ -37,7 +37,7 @@ jobs:
    run : npm run lint 
 
   build-app : 
-  needs : lint-app 
+  needs : Lint-App 
   runs-on : unbunt-app
   steps :
    -name : build app 
