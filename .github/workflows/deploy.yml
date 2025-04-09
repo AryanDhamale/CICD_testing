@@ -2,11 +2,12 @@ name : CI CD pipeline testing
 
 on  : 
   push :  
-  branche : main
+  branches : 
+      -main
 
 jobs : 
-tesing-cicd : 
-runs-on :  ubuntu-latest
+  tesing-cicd : 
+  runs-on :  ubuntu-latest
 
 steps : 
   -name : checkout-repository 
@@ -18,8 +19,11 @@ steps :
     node-version : '20'
 
   -name : install dependancy 
-  uses : npm install 
+  run : npm install 
+
+  -name : lint the code
+  run : npm run lint 
 
   -name : build-my-app 
-  uses : npm run build
+  run : npm run build
 
