@@ -30,15 +30,15 @@ jobs:
     run : npm install 
 
   Lint-App :  
-  needs : install-dependancy 
-  runs-on : ubuntu-latest 
-  steps : 
-   -name : 'lint-app'
-   run : npm run lint 
+   needs : install-dependancy 
+   runs-on : ubuntu-latest 
+   steps : 
+    -name : 'lint-app'
+    run : npm run lint 
 
   build-app : 
-  needs : Lint-App 
-  runs-on : unbunt-app
-  steps :
-   -name : build app 
-   run : npm run build
+   needs : Lint-App 
+   runs-on : ubuntu-latest
+   steps :
+    -name : build app 
+    run : npm run build
