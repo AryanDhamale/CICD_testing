@@ -19,7 +19,7 @@ jobs:
     -name : check node version 
     uses : actions/setup-node@v3,
    with :
-    node-version : '20
+    node-version : '20'
 
 
   install-dependancy : 
