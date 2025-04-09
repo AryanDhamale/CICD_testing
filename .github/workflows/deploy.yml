@@ -6,23 +6,39 @@ on:
       - main
 
 jobs:
-  testing-cicd:
+  start : 
     runs-on: ubuntu-latest
+    steps : 
+     -name : check-repo 
+     uses : actions/checkout@v3 
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+  nodeVersion:  
+   needs : start 
+   runs-on : ubuntu-latest 
+   steps : 
+    -name : check node version 
+    uses : actions/setup-node@v3,
+   with :
+    node-version : '20
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
 
-      - name: Install dependencies
-        run: npm install
+  install-dependancy : 
+   needs : nodeVersion
+   runs-on : ubuntu-latest 
+   steps : 
+    -name : install-dep 
+    run : npm install 
 
-      - name: Lint the code
-        run: npm run lint
+  lint-app :  
+  needs : install-dependancy 
+  runs-on : ubuntu-latest 
+  steps : 
+   -name : 'lint-app'
+   run : npm run lint 
 
-      - name: Build my app
-        run: npm run build
+  build-app : 
+  needs : lint-app 
+  runs-on : unbunt-app
+  steps :
+   -name : build app 
+   run : npm run build
